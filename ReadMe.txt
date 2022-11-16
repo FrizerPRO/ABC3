@@ -17,39 +17,14 @@
   
 3 Убираю лишние строки в программе:
   3.1 заменил или удалил:
-  	-mov	rax, rsi	# tmp88, timeA
-	-mov	rsi, rdi	# tmp87, tmp87
-	-mov	rsi, r8	# tmp86, tmp87
-	-mov	rdi, r9	#,
-	-mov	rdi, rax	#, tmp88
-	-mov	QWORD PTR -32[rbp], rsi	# timeA, tmp86
-	-mov	QWORD PTR -24[rbp], rdi	# timeA,
-	на: 
-    	+mov	QWORD PTR -32[rbp], rdi	# timeA, tv_sec
-	+mov	QWORD PTR -24[rbp], rsi	# timeA, tv_nsec
-	
-	-mov	rax, QWORD PTR -480[rbp]	# tmp162, start
-	-mov	rdx, QWORD PTR -472[rbp]	#, start
-	-mov	rdi, QWORD PTR -496[rbp]	# tmp163, end
-	-mov	rsi, QWORD PTR -488[rbp]	# tmp164, end
-	-mov	rcx, rdx	#,
-	-mov	rdx, rax	#, tmp162
-	на
-	+mov	rdx, QWORD PTR -480[rbp]	# start.tv_sec в 3 параметр
-	+mov	rcx, QWORD PTR -472[rbp]	# start.tv_nsec в 4 параметр
-	+mov	rdi, QWORD PTR -496[rbp]	# Передача end.tv_sec в 1 параметр
-	+mov	rsi, QWORD PTR -488[rbp]	# Передача end.tv_nasec в 1 параметр
-	
-	-endbr64
-	-cdqe
-	-	.size	main, .-main
-	-.ident	"GCC: (Ubuntu 11.2.0-19ubuntu1) 11.2.0"
-	-.section	.note.GNU-stack,"",@progbits
-	-.section	.note.gnu.property,"a"
-	-.align 8
-	-.long	1f - 0f
-	-.long	4f - 1f
-	-.long	5
+  
+-  	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
+-	.section	.note.GNU-stack,"",@progbits
+-	.section	.note.gnu.property,"a"
+-	.align 8
+-	.long	1f - 0f
+-	.long	4f - 1f
+-	.long	5
 -0:
 -	.string	"GNU"
 -1:
@@ -61,74 +36,148 @@
 -3:
 -	.align 8
 -4:
-	
-	-mov	rax, QWORD PTR -24[rbp]	# tmp114, seed
-	-mov	rdi, rax	#, tmp114
-	на
-	+mov	rdi, QWORD PTR -24[rbp]	# Передаю seed в первый параметр
-	
-	
-	-mov	rax, QWORD PTR -40[rbp]	# tmp115, destination
-	-mov	rdi, rax	#, tmp115
-	на
-	+mov	rdi, QWORD PTR -40[rbp]	# Передаю destination в первый параметр
-	
-	-mov	rax, QWORD PTR -24[rbp]	# tmp116, seed
-	-mov	rdi, rax	#, tmp116
-	на
-	+mov	rdi, QWORD PTR -24[rbp]	# tmp116, seed
-	
-	-mov	rax, QWORD PTR -32[rbp]	# tmp120, strC
-	-mov	rdi, rax	#, tmp120
-	на
-	+mov	rdi, QWORD PTR -32[rbp]	# tmp120, strC
+-	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
+-	.section	.note.GNU-stack,"",@progbits
+-	.section	.note.gnu.property,"a"
+-	.align 8
+-	.long	1f - 0f
+-	.long	4f - 1f
+-	.long	5
+-0:
+-	.string	"GNU"
+-1:
+-	.align 8
+-	.long	0xc0000002
+-	.long	3f - 2f
+-2:
+-	.long	0x3
+-3:
+-	.align 8
+-4:
 
-	-mov	rax, QWORD PTR -24[rbp]	# Передаю seed в первый параметр
-	-mov	rdi, rax	#, tmp130
+	-mov	rax, rsi	# tmp88, timeA
+	-mov	r8, rdi	# tmp87, tmp87
+	-mov	rsi, r8	# tmp86, tmp87
+	-mov	rdi, r9	#,
+	-mov	rdi, rax	#, tmp88
+	-mov	QWORD PTR -32[rbp], rsi	# timeA.tv_sec
+	-mov	QWORD PTR -24[rbp], rdi	# timeA.tv_nsec
+	-mov	QWORD PTR -48[rbp], rdx	# timeB.tv_sec
+	-mov	QWORD PTR -40[rbp], rcx	# timeB.tv_nsec
 	на
-	+mov	rdi, QWORD PTR -24[rbp]	# Передаю seed в первый параметр
+	+mov	QWORD PTR -32[rbp], rdi	# timeA.tv_sec
+	+mov	QWORD PTR -24[rbp], rsi	# timeA.tv_nsec
+	+mov	QWORD PTR -48[rbp], rdx	# timeB.tv_sec
+	+mov	QWORD PTR -40[rbp], rcx	# timeB.tv_nsec
 	
-	-mov	rcx, QWORD PTR -40[rbp]	# tmp119, destination
-	-mov	rsi, rcx	#, tmp119
+	-endbr64
+	-mov	rax, QWORD PTR [rax]	# _2, *_1
+	-lea	rdx, .LC0[rip]	# tmp111,
+	-mov	rsi, rdx	#, tmp111
+	-mov	rdi, rax	#, _2
 	на
-	+mov	rsi, QWORD PTR -40[rbp]	# Передаю destination во второй параметр
+	+lea	rdx, .LC2[rip]	# tmp115,
+	+mov	rsi, rdx	#, tmp115
+	+mov	rdi, QWORD PTR [rax]	# argv[1] в 1-й параметр
 
-	-mov	rdx, QWORD PTR -24[rbp]	# Передаю seed во второй параметр
-	-mov	rsi, rdx	#, tmp123
-	на
-	+mov	rsi, QWORD PTR -24[rbp]	# Передаю seed во второй параметр
 	
-	-mov	rdx, QWORD PTR -32[rbp]	# Передаю strC во второй параметр
-	-mov	rsi, rdx	# Передаю strC во второй параметр
+	-mov	rax, QWORD PTR [rax]	# _5, *_4
+	-lea	rdx, .LC2[rip]	# tmp115,
+	-mov	rsi, rdx	#, tmp115
+	-mov	rdi, rax	# argv[1] в 1-й параметр
 	на
-	+mov	rsi, QWORD PTR -32[rbp]	# Передаю strC во второй параметр
+	+lea	rdx, .LC2[rip]	# tmp115,
+	+mov	rsi, rdx	#, tmp115
+	+mov	rdi, QWORD PTR [rax]	# argv[1] в 1-й параметр
+	
+	-mov	rax, QWORD PTR [rax]	# _5, *_4
+	-lea	rdx, .LC3[rip]	# tmp115,
+	-mov	rsi, rdx	#, tmp115
+	-mov	rdi, rax	# argv[2] в 1-й параметр
+	на
+	+lea	rdx, .LC3[rip]	# tmp115,
+	+mov	rsi, rdx	#, tmp115
+	+mov	rdi, QWORD PTR [rax]	# argv[2] в 1-й параметр
+	
+	-mov	rax, QWORD PTR [rax]	# _18, *_17
+	-mov	rdi, rax	#, _18
+	на
+	+mov	rdi, QWORD PTR [rax]	# _18, *_17
+	
+	-mov	rax, QWORD PTR -80[rbp]	# Передача begin.tv_nsec в 3 параметр
+	-mov	rdx, QWORD PTR -72[rbp]	# Передача begin.tv_sec в 4 параметр
+	-mov	rdi, QWORD PTR -96[rbp]	# Передача end.tv_sec в 1 параметр
+	-mov	rsi, QWORD PTR -88[rbp]	# Передача end.tv_nsec в 2 параметр
+	-mov	rcx, rdx	#,
+	-mov	rdx, rax	#, tmp137
+	на
+	+mov	rdx, QWORD PTR -80[rbp]	# Передача begin.tv_nsec в 3 параметр
+	+mov	rcx, QWORD PTR -72[rbp]	# Передача begin.tv_sec в 4 параметр
+	+mov	rdi, QWORD PTR -96[rbp]	# Передача end.tv_sec в 1 параметр
+	+mov	rsi, QWORD PTR -88[rbp]	# Передача end.tv_nsec в 2 параметр
+	
+	-mov	rax, QWORD PTR [rax]	# _23, *_22
+	-lea	rdx, .LC2[rip]	# tmp146,
+	-mov	rsi, rdx	#, tmp146
+	-mov	rdi, rax	#, _23
+	на
+	+mov	rdi, QWORD PTR [rax]	# _23, *_22
+	+lea	rdx, .LC2[rip]	# tmp146,
+	+mov	rsi, rdx	#, tmp146
+	
+	-mov	rax, QWORD PTR -40[rbp]	# tmp141, elapsed_ns
+	-mov	rsi, rax	#, tmp141
+	на
+	+mov	rsi, QWORD PTR -40[rbp]	#  elapsed_ns во второй параметр
+	
+-		.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
+-	.section	.note.GNU-stack,"",@progbits
+-	.section	.note.gnu.property,"a"
+-	.align 8
+-	.long	1f - 0f
+-	.long	4f - 1f
+-	.long	5
+-0:
+-	.string	"GNU"
+-1:
+-	.align 8
+-	.long	0xc0000002
+-	.long	3f - 2f
+-2:
+-	.long	0x3
+-3:
+-	.align 8
+-4:
+
 	
 4 Нашел соответствие переменных в коде.
 	В main.c:
+	getPi:
 	-32[rbp]  # timeA.tv_sec
 	-24[rbp]  # timeA.tv_nsec
 	-48[rbp]  # timeB.tv_sec
 	-40[rbp]  # timeB.tv_nsec
 	-8[rbp]   # nsecA
 	-16[rbp]  # nsecB
-	-20[rbp]  # count
-	-500[rbp] # argc
-	-512[rbp] # argv
-	-24[rbp]  # i
-	-40[rbp]  # f на чтение (передается по ссылке)
-	-464[rbp] # input_line (передается по ссылке)
-	-480[rbp] # start.tv_sec (передается по ссылке)
-	-472[rbp] # start.tv_nsec
-	-496[rbp] # end.tv_sec (передается по ссылке)
-	-488[rbp] # end.tv_nsec
-	-64[rbp]  # f на запись
-	-56[rbp]  # elapsed_ns
-	-44[rbp], # ch
+	main:
+	-100[rbp] # argc
+	-112[rbp] # argv
+	-12[rbp]  # count
+	-20[rbp]  # i
+	-80[rbp]  # begin.tv_nsec
+	-72[rbp]  # begin.tv_sec
+	-96[rbp]  # end.tv_sec
+	-88[rbp]  # end.tv_nsec
+	-16[rbp]  # j
+	-48[rbp]  # fwrite
+	-8[rbp]	  # result
+	-32[rbp]  # fread 
+	-40[rbp]  # elapsed_ns
+	-56[rbp]  # accuracy
 	В func.c:
-	-40[rbp]  # destination
-	-44[rbp]  # pos
-	-24[rbp]  # seed
-	-32[rbp]  # strC
+	-24[rbp]  # accurancy
+	-8[rbp]   # res
+	-12[rbp]  # counter
 	
 5 Заменил на регистры:
 	main.c:
